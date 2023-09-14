@@ -35,8 +35,8 @@ pipeline {
                      def scannerHome = tool 'scanner-default'
                      withSonarQubeEnv('sonar-server') {
                          sh "${scannerHome}/bin/sonar-scanner \
-                             -Dsonar.projectKey=labmaven \
-                             -Dsonar.projectName=labmaven \
+                             -Dsonar.projectKey=lab-maven \
+                             -Dsonar.projectName=lab-maven \
                              -Dsonar.sources=src/main/java \
                              -Dsonar.java.binaries=target/classes \
                              -Dsonar.tests=src/test/java"
@@ -81,7 +81,7 @@ pipeline {
             steps {
                 script {
                     sh 'docker ps'                    
-                    //sh 'curl http://localhost:8080/customers'
+                    //sh 'curl http://localhost:8081/customers'
                 }
             }
         }
