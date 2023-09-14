@@ -29,7 +29,7 @@ pipeline {
              }
         }
 
-        stage('SonarQube') {
+/*      stage('SonarQube') {
              steps {
                  script {
                      def scannerHome = tool 'scanner-default'
@@ -43,7 +43,7 @@ pipeline {
                      }
                  }
             }
-         }
+         }*/
         stage('Build Image') {
             steps {
                 copyArtifacts filter: 'target/*.jar',
@@ -78,7 +78,7 @@ pipeline {
             }
         }
         
-/*        stage('Test Run Container') {
+        stage('Test Run Container') {
             steps {
                 script {
                     sh 'docker ps'                    
@@ -86,5 +86,5 @@ pipeline {
                 }
             }
         }
-*/    }
+    }
 }
