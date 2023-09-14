@@ -35,8 +35,8 @@ pipeline {
                      def scannerHome = tool 'scanner-default'
                      withSonarQubeEnv('sonar-server') {
                          sh "${scannerHome}/bin/sonar-scanner \
-                             -Dsonar.projectKey=labmaven01 \
-                             -Dsonar.projectName=labmaven01 \
+                             -Dsonar.projectKey=lab-maven \
+                             -Dsonar.projectName=lab-maven \
                              -Dsonar.sources=src/main/java \
                              -Dsonar.java.binaries=target/classes \
                              -Dsonar.tests=src/test/java"
@@ -44,6 +44,18 @@ pipeline {
                  }
             }
          }
+
+        node {
+  stage('SCM') {
+    checkout scm
+  }
+  stage('SonarQube Analysis') {
+    def mvn = tool 'Default Maven';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar"
+    }
+  }
+}
         stage('Build Image') {
             steps {
                 copyArtifacts filter: 'target/*.jar',
