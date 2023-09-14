@@ -19,7 +19,7 @@ pipeline {
             }
         }
 
-/*        stage('Test') {
+/*      stage('Test') {
              agent {
                  docker { image 'maven:3.6.3-openjdk-11-slim' }
              }
@@ -27,7 +27,7 @@ pipeline {
                  sh 'mvn test'
                  junit '/target/test-classes/*.xml'
              }
-        }/*
+        }*/
 
         stage('SonarQube') {
              steps {
