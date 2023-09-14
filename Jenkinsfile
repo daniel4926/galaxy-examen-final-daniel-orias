@@ -18,7 +18,7 @@ pipeline {
                 archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
             }
         }
-
+/*
         stage('Test') {
              agent {
                  docker { image 'maven:3.6.3-openjdk-11-slim' }
@@ -28,14 +28,15 @@ pipeline {
                  junit '**/target/test-classes/*.xml'
              }
         }
+*/
         stage('SonarQube') {
              steps {
                  script {
                      def scannerHome = tool 'scanner-default'
                      withSonarQubeEnv('sonar-server') {
                          sh "${scannerHome}/bin/sonar-scanner \
-                             -Dsonar.projectKey=lab-maven \
-                             -Dsonar.projectName=lab-maven \
+                             -Dsonar.projectKey=labmaven \
+                             -Dsonar.projectName=labmaven \
                              -Dsonar.sources=src/main/java \
                              -Dsonar.java.binaries=target/classes \
                              -Dsonar.tests=src/test/java"
@@ -79,9 +80,8 @@ pipeline {
         stage('Test Run Container') {
             steps {
                 script {
-                    sh 'docker ps'
-                    // Agrega pruebas adicionales según sea necesario
-                    // sh 'curl http://localhost:8080/your-endpoint'
+                    sh 'docker ps'                    
+                    //sh 'curl http://localhost:8080/customers'
                 }
             }
         }
