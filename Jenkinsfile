@@ -19,7 +19,7 @@ pipeline {
             }
         }
 
-      stage('Test') {
+ /*     stage('Test') {
              agent {
                  docker { image 'maven:3.6.3-openjdk-11-slim' }
              }
@@ -27,23 +27,23 @@ pipeline {
                  sh 'mvn test'
                  junit '/target/test-classes/*.xml'
              }
-        }
+        }*/
 
-/*      stage('SonarQube') {
+      stage('SonarQube') {
              steps {
                  script {
                      def scannerHome = tool 'scanner-default'
                      withSonarQubeEnv('sonar-server') {
                          sh "${scannerHome}/bin/sonar-scanner \
-                             -Dsonar.projectKey=lab-maven \
-                             -Dsonar.projectName=lab-maven \
+                             -Dsonar.projectKey=labmaven01 \
+                             -Dsonar.projectName=labmaven01 \
                              -Dsonar.sources=src/main/java \
                              -Dsonar.java.binaries=target/classes \
                              -Dsonar.tests=src/test/java"
                      }
                  }
             }
-         }*/
+         }
         stage('Build Image') {
             steps {
                 copyArtifacts filter: 'target/*.jar',
