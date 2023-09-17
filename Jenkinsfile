@@ -64,7 +64,7 @@ pipeline {
 
     stage('Build Image') {
       steps {
-        copyArtifacts filter: 'target/*.jar',
+        copyArtifacts filter: 'target/lab-maven-*-.jar',
                       fingerprintArtifacts: true,
                       projectName: env.JOB_NAME,
                       flatten: true,
