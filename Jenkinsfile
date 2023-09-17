@@ -43,8 +43,8 @@ pipeline {
           def scannerHome = tool 'scanner-default'
           withSonarQubeEnv('sonar-server') {
             sh "${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=lab-maven \
-                            -Dsonar.projectName=lab-maven \
+                            -Dsonar.projectKey=examen01 \
+                            -Dsonar.projectName=examen01 \
                             -Dsonar.sources=src/main \
                             -Dsonar.sourceEncoding=UTF-8 \
                             -Dsonar.language=java \
@@ -98,7 +98,7 @@ pipeline {
         script {
           sh 'docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}'
           sh 'docker rm -f msmicroservice'
-          sh 'docker run -d --name msmicroservice -p 8070:8080 ${DOCKER_CREDS_USR}/msmicroservice:${BUILD_NUMBER}'
+        //  sh 'docker run -d --name msmicroservice -p 8080:8080 ${DOCKER_CREDS_USR}/msmicroservice:${BUILD_NUMBER}'
           sh 'docker logout'
         }
       }
