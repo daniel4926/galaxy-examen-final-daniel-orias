@@ -66,7 +66,7 @@ pipeline {
       steps {
         copyArtifacts filter: 'target/*.jar',
                       fingerprintArtifacts: true,
-                      projectName: '${JOB_NAME}',
+                      projectName: env.JOB_NAME,
                       flatten: true,
                       selector: specific("${BUILD_NUMBER}"),
                       target: 'target'
