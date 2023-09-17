@@ -86,7 +86,7 @@ pipeline {
         }
       }
     }
-
+/*
     stage('Run Container') {
       environment {
         DOCKER_CREDS = credentials('docker-credentials')
@@ -100,7 +100,7 @@ pipeline {
         }
       }
     }
-
+*/
   }
 
 }
