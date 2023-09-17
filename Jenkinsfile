@@ -48,6 +48,7 @@ pipeline {
             }
             stage('Build Image') {
                 steps {
+                    copyArtifactPermission('*'),
                     copyArtifacts filter: 'target/labmaven-*.jar',
                                     fingerprintArtifacts: true,
                                     projectName: '${JOB_NAME}',
