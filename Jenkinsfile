@@ -28,8 +28,8 @@ pipeline {
                     def scannerHome = tool 'scanner-default';
                     withSonarQubeEnv('sonar-server') {
                         sh "${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=labmaven \
-                            -Dsonar.projectName=labmaven \
+                            -Dsonar.projectKey=lab-maven \
+                            -Dsonar.projectName=lab-maven \
                             -Dsonar.sources=src/main \
                             -Dsonar.sourceEncoding=UTF-8 \
                             -Dsonar.language=java \
@@ -47,9 +47,8 @@ pipeline {
                 }
             }
             stage('Build Image') {
-                steps {
-                    copyArtifactPermission('*'),
-                    copyArtifacts filter: 'target/labmaven-*.jar',
+                steps {                    
+                    copyArtifacts filter: 'target/lab-maven-*.jar',
                                     fingerprintArtifacts: true,
                                     projectName: '${JOB_NAME}',
                                     flatten: true,
